@@ -31,7 +31,7 @@ Product.init(
       allowNull: false,
       default: 10,
       validate: {
-        isNaN: false
+        isDecimal: true
       },
     category_id: {
       type: DataTypes.INTEGER,
