@@ -25,12 +25,12 @@ router.get('/:id', async (req, res) => {
       include: [{ model: Category }, { model: Tag}],
     });
 
-    if (!categoryData) {
+    if (!productData) {
       res.status(404).json({ message: 'No driver found with that id!' });
       return;
     }
 
-    res.status(200).json(categoryData);
+    res.status(200).json(productData);
 
   } catch (err) {
     res.status(500).json(err);
@@ -41,13 +41,7 @@ router.get('/:id', async (req, res) => {
 
 
 // create new product
-router.post('/', async (req, res) => {
-  try{
-    const productData = await Product.create(req.body);
-    res.status(200).json(productData)
-  } catch (err) {
-    res.status(400).json(err);
-  }
+router.post('/', (req, res) => {
   /* req.body should look like this...
     {
       product_name: "Basketball",
@@ -77,6 +71,8 @@ router.post('/', async (req, res) => {
       res.status(400).json(err);
     });
 });
+
+
 
 // update product
 router.put('/:id', (req, res) => {
